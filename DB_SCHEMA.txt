@@ -1,0 +1,104 @@
+/* ADMIN TABLE*/
+DROP TABLE IF EXISTS `admin`;
+
+CREATE TABLE `admin` (
+  `id` int NOT NULL AUTO_INCREMENT,
+  `emailid` varchar(255) DEFAULT NULL,
+  `password` varchar(255) DEFAULT NULL,
+  PRIMARY KEY (`id`)
+) 
+
+
+/*CHEQUEBOOK TABLE*/
+DROP TABLE IF EXISTS `cheque_book`;
+
+CREATE TABLE `cheque_book` (
+  `id` bigint NOT NULL AUTO_INCREMENT,
+  `accepted` bit(1) NOT NULL,
+  `user_id` bigint DEFAULT NULL,
+  PRIMARY KEY (`id`),
+  KEY `FKjhiwqtt3o2tds933ybeah0web` (`user_id`)
+) 
+
+
+/*LOAN TABLE*/
+DROP TABLE IF EXISTS `loan`;
+
+CREATE TABLE `loan` (
+  `id` bigint NOT NULL AUTO_INCREMENT,
+  `accepted` bit(1) NOT NULL,
+  `user_id` bigint DEFAULT NULL,
+  PRIMARY KEY (`id`),
+  KEY `FKxxm1yc1xty3qn1pthgj8ac4f` (`user_id`)
+)
+
+
+/*PERSONAL TRANSACTIONS*/
+DROP TABLE IF EXISTS `personal_transaction`;
+
+CREATE TABLE `personal_transaction` (
+  `transaction_id` int NOT NULL AUTO_INCREMENT,
+  `acc_no` int NOT NULL,
+  `acc_type` varchar(255) DEFAULT NULL,
+  `date` datetime DEFAULT NULL,
+  `new_balance` bigint DEFAULT NULL,
+  `prev_balance` bigint DEFAULT NULL,
+  `transaction_type` varchar(255) DEFAULT NULL,
+  PRIMARY KEY (`transaction_id`)
+) 
+
+
+/*PRIMARY_ACCOUNT TABLE*/
+DROP TABLE IF EXISTS `primary_account`;
+
+CREATE TABLE `primary_account` (
+  `id` bigint NOT NULL AUTO_INCREMENT,
+  `account_balance` bigint DEFAULT NULL,
+  `account_number` int NOT NULL,
+  PRIMARY KEY (`id`)
+) 
+
+
+/*SAVINGS_ACCOUNT TABLE*/
+DROP TABLE IF EXISTS `savings_account`;
+
+CREATE TABLE `savings_account` (
+  `id` bigint NOT NULL AUTO_INCREMENT,
+  `account_balance` bigint DEFAULT NULL,
+  `account_number` int NOT NULL,
+  PRIMARY KEY (`id`)
+)
+
+
+/*TRANSACTION TABLE*/
+DROP TABLE IF EXISTS `transactions`;
+
+CREATE TABLE `transactions` (
+  `transaction_id` int NOT NULL AUTO_INCREMENT,
+  `ifsc` varchar(255) DEFAULT NULL,
+  `description` varchar(255) DEFAULT NULL,
+  `destination_accountnumber` int NOT NULL,
+  `source_accountnumber` int NOT NULL,
+  `transaction_amount` bigint DEFAULT NULL,
+  PRIMARY KEY (`transaction_id`)
+)
+
+
+/*USER TABLE*/
+DROP TABLE IF EXISTS `user`;
+
+CREATE TABLE `user` (
+  `id` bigint NOT NULL AUTO_INCREMENT,
+  `address` varchar(255) DEFAULT NULL,
+  `fullname` varchar(255) DEFAULT NULL,
+  `mailid` varchar(255) DEFAULT NULL,
+  `password` varchar(255) DEFAULT NULL,
+  `phonenumber` bigint DEFAULT NULL,
+  `surname` varchar(255) DEFAULT NULL,
+  `primary_account_id` bigint DEFAULT NULL,
+  `savings_account_id` bigint DEFAULT NULL,
+  PRIMARY KEY (`id`),
+  KEY `FKbj0uoj9i40dory8w4t5ojyb9n` (`primary_account_id`),
+  KEY `FKihums7d3g5cv9ehminfs1539e` (`savings_account_id`)
+)
+
